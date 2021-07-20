@@ -1,0 +1,38 @@
+.container{
+    border : 3px solid #f73b99;
+    width : 40%;
+    margin-top: 25px;
+    padding: 20px;
+    display:inline-block
+}
+
+.button{
+    color: #ffffff;
+  text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  font-size: 0.8rem;
+  border: 3px solid #f73b99;
+  height: 40px;
+  width: 90px;
+  border-radius: 20px;
+  margin-top: 15px
+}
+
+.button:hover {
+    color: black;
+    background-color: gray;
+}
+
+.inputText{
+    border-radius: 8px;
+    margin-bottom: 10px;
+    height: 20px;
+    width: 200px
+}
+
+.subTitle{
+  text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+  #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
+  #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+}

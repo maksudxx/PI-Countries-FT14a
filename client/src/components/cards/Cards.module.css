@@ -1,0 +1,16 @@
+.card{
+    border: 20px solid rgba(224, 155, 245, 0);
+    list-style: none;
+    background: linear-gradient(to bottom right, rgb(251, 253, 253), rgb(134, 241, 255));
+    border-radius: 10px;
+    height: 270px;
+    align-items: center;
+}
+
+.card:hover{
+    opacity: 0.7;
+}
+
+.img{
+    margin-top: 15px;
+}
