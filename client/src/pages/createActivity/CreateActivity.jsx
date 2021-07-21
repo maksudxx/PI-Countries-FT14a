@@ -14,13 +14,12 @@ export default function CreateActivity() {
     countries: [],
   });
 
-  const activities = [{name: 'Futbol'}, {name: 'Sky'}, {name: 'MountainBike'}, {name: 'Fishing'}, {name: 'Excursions'}, {name: 'Bungee Jumping'}, {name: 'Diving'}, {name: 'Poker tournaments'}];
   const seasons = [{name: 'Autumn'}, {name: 'Winter'}, {name: 'Spring'}, {name: 'Summer'}]
 
 
   useEffect(() => {
     dispatch(getCountries('asc'));
-  }, []);
+  }, [dispatch]);
 
   let arrayCountries = [];
   let clickCountry = (e) => {
@@ -53,6 +52,10 @@ export default function CreateActivity() {
       });
 
       alert("done..!");
+      setInput({
+        name: "",
+        duration: ""
+      })
     } catch (err) {
       console.log(err.message);
     }

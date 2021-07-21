@@ -1,4 +1,3 @@
-import SearchBar from "../searchBar/SearchBar";
 import IMG from "../../Img/home.gif";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";

@@ -10,6 +10,7 @@ export default function Countries() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
+  
   const next_Page = () => {
     if (countries.length <= page + 10) {
       setPage(page);
@@ -31,8 +32,9 @@ export default function Countries() {
   }, [countries]);
 
   useEffect(() => {
+    setOrder()
     dispatch(getCountries(order));
-  }, []);
+  }, [dispatch, order]);
 
   const filtred = countries.slice(page, page + 10);
   return (

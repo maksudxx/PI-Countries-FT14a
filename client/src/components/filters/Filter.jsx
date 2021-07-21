@@ -1,5 +1,5 @@
 import { filterContinent, getCountries , filterActivities} from "../../redux/actions";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import styles from "./Filter.module.css"

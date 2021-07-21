@@ -35,8 +35,6 @@ export default function rootReducer(state = initialState, action) {
   }
 
   if (action.type === FILTER_COUNTRIES_CONTINENT) {
-    // let filterContinent= state.countries.filter((country) => country.continent === action.payload);
-    // console.log(filterContinent)
     return {
       ...state,
       countries: state.countries.filter((country) => country.continent === action.payload)
