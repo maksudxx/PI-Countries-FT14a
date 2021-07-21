@@ -1,22 +1,16 @@
-import { GET_COUNTRIES } from "../actions/index";
+import { FILTER_COUNTRIES_ACTIVITIES, GET_COUNTRIES } from "../actions/index";
 import { GET_COUNTRIES_NAME } from "../actions/index";
 import { GET_COUNTRY_DETAIL } from "../actions/index";
 import { FILTER_COUNTRIES_CONTINENT } from "../actions/index";
-import {ORDER_COUNTRIES_POP_MIN} from "../actions/index";
-import {ORDER_COUNTRIES_POP_MAX} from "../actions/index";
+import {ORDER_COUNTRIES_POPULATION} from "../actions/index";
+
 
 const initialState = {
   countries: [],
   countryDetail: {},
-  filterContinent:[]
+  filterContinents:[]
  
 };
-
-const Pop_Order = (a, b) => {
-  if(a.population < b.population) return -1
-  if(a.population > b.population) return 1
-  return 0
-}
 
 export default function rootReducer(state = initialState, action) {
   if (action.type === GET_COUNTRIES) {
@@ -46,22 +40,31 @@ export default function rootReducer(state = initialState, action) {
     return {
       ...state,
       countries: state.countries.filter((country) => country.continent === action.payload)
-      
+     
     };
   }
 
-  if (action.type === ORDER_COUNTRIES_POP_MAX) {
+  if (action.type === FILTER_COUNTRIES_ACTIVITIES) {
+
+    let a = state.countries.filter((country) => country.touristActivities.some((a)=> a.name === action.payload))
+    console.log('payload: '+ action.payload)
+    console.log('array '+ a)
     return {
       ...state,
-      countries: state.countries.slice().sort(Pop_Order).reverse()
-    }
+      countries: state.countries.filter((country) => {
+        return country.touristActivities.some((a)=> a.name === action.payload)
+      })
+     
+    };
   }
 
-  if (action.type === ORDER_COUNTRIES_POP_MIN) {
+  if (action.type === ORDER_COUNTRIES_POPULATION) {
     return {
       ...state,
-      countriesLoaded: state.countries.slice().sort(Pop_Order)
-    }
+      countries: action.payload,
+    };
   }
+
+ 
   return state;
 }

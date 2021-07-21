@@ -1,16 +1,18 @@
-.countriesGrid{
-    display:grid;
-    grid-template-columns: repeat(auto-fill, 230px);  
-    gap: 40px;
-    justify-content: center;
+.countriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 230px);
+  gap: 40px;
+  justify-content: center;
 }
-.title{
-    color: #ffffff;
-    text-shadow: rgb(90, 90, 90) 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
-    font-size: 3rem;
+.title {
+  color: #ffffff;
+  text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  font-size: 3rem;
 }
-.button{
-    color: #ffffff;
+.button {
+  color: #ffffff;
   text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
@@ -19,16 +21,15 @@
   height: 40px;
   width: 90px;
   border-radius: 20px;
-  margin-top: 15px
+  margin: 30px;
 }
 
 .button:hover {
-    color: black;
-    background-color: gray;
-    cursor: pointer;
+  color: black;
+  background-color: gray;
+  cursor: pointer;
 }
 
-.container{
-    justify-content: space-around;
+.container {
+  justify-content: space-around;
 }
-

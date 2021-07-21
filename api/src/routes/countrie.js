@@ -12,7 +12,8 @@ const router = Router();
 
 router.get("/countries", async (req, res) => {
   try {
-    const { nameFront } = req.query;
+    const { name } = req.query;
+    const { activity } = req.query;
 
     let countries = await Country.findAll();
     if (countries.length === 0) {
@@ -31,13 +32,15 @@ router.get("/countries", async (req, res) => {
       });
     }
 
-    if (!nameFront) {
+    if (!name) {
       const countrie = await Country.findAll({
+        order: [["name", req.query.order]],
+        include: { model: TouristActivity}
       });
       res.json(countrie);
     } else {
       const matchCountrie = await Country.findAll({
-        where: { name: { [Op.iLike]: `%${nameFront}%` } },
+        where: { name: { [Op.iLike]: `%${name}%` } },
       });
       if (matchCountrie.length === 0) {
         res.json({ message: "THE COUNTRY DOES NOT EXIST" });
@@ -51,35 +54,20 @@ router.get("/countries", async (req, res) => {
 });
 
 router.post("/activity", async (req, res) => {
-  const { name, difficulty, duration, season, countries } = req.body;
+  try {
+    const { name, difficulty, duration, season, arrayCountries } = req.body;
+    let newActivity = await TouristActivity.create({
+      name: name,
+      difficulty: difficulty,
+      duration: duration,
+      season: season,
+    });
 
-  let newActivity = await TouristActivity.create({
-    name,
-    difficulty,
-    duration,
-    season,
-  });
-
-  await newActivity.addTouristActivity(countries.id);
-  res.json(newActivity);
-  //     let tourist = req.body
-  //     console.log("soy Actividad turistica", tourist)
-  //          try {
-  //            let[turista, created] = await TouristActivity.findOrCreate({
-  //              where: {
-  //                name : tourist.name,
-  //                difficulty: tourist.difficulty,
-  //                duration: tourist.duration,
-  //                season: tourist.season,
-  //              }
-  //            })
-  //            //console.log(created)
-  //            await turista.setCountries(tourist.id)
-  //            res.send(turista)
-  //           }catch(err){
-
-  //            res.send("no se pudo cargar la BD")
-  //           }
+    await newActivity.addCountry(arrayCountries);
+    res.json(newActivity);
+  } catch (err) {
+    res.status(500).json;
+  }
 });
 
 router.get("/countries/:id", async (req, res) => {
@@ -88,11 +76,23 @@ router.get("/countries/:id", async (req, res) => {
     let query = await Country.findByPk(id.toUpperCase(), {
       include: { model: TouristActivity },
     });
-
     res.json(query);
   } catch (err) {
     res.json("ID NOT FOUND");
   }
 });
+
+router.get("/population", async (req, res) => {
+  try {
+    let query = await Country.findAll({
+      order: [["population", req.query.order]],
+    });
+    console.log(req.query.order);
+    res.json(query);
+  } catch (err) {
+    res.json("NOT FOUND");
+  }
+});
+
 
 module.exports = router;

@@ -1,0 +1,8 @@
+.title{
+    margin: 0;
+    text-shadow: rgb(88, 85, 85) 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+}
+
+.order{
+    margin: 5px;
+}

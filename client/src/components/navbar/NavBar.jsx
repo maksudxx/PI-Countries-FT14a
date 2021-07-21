@@ -2,13 +2,16 @@ import SearchBar from "../searchBar/SearchBar";
 import IMG from "../../Img/home.gif";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
+import Order from "../order/Order";
+import Filter from "../filters/Filter";
 export default function NavBar() {
   return (
     <nav className={styles.container}>
       <Link to="/home">
         <img src={IMG} alt="" width={65} className={styles.imgHome} />
       </Link>
-      {/* <SearchBar /> */}
+      <Order/>
+      <Filter/>
       <div className={styles.menu}>
         <Link to="/countries">
           <div className={styles.buttonMenu}>

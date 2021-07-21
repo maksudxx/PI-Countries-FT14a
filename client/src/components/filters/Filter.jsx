@@ -1,43 +1,68 @@
-import { filterContinent , getCountries} from "../../redux/actions"
-import {useDispatch} from "react-redux"
-import {useEffect, useState} from 'react'
+import { filterContinent, getCountries , filterActivities} from "../../redux/actions";
+import { useDispatch , useSelector } from "react-redux";
+import { useState } from "react";
+import { FcSearch } from "react-icons/fc";
+import styles from "./Filter.module.css"
 
-export default function Filter(){
+export default function Filter() {
+  const dispatch = useDispatch();
+  // const a = useSelector((state) => state.countries)
+  // const aux = a.filter((b)=> b.touristActivities.some((z)=> z.name === "Rugby"))
+  // console.log(aux)
+  let continents = [
+    { name: "All" },
+    { name: "Americas" },
+    { name: "Asia" },
+    { name: "Europe" },
+    { name: "Africa" },
+    { name: "Polar" },
+    { name: "Oceania" },
+  ];
+  const [continent, setContinent] = useState("");
+  const [input, setInput] = useState("");
 
-    const dispatch = useDispatch();
-    let continents = [{name:'All'},{name:'Americas'}, {name:'Asia'}, {name:'Europe'}, {name:'Africa'}, {name:'Polar'}, {name:'Oceania'}]
-    const [continent, setContinent] = useState('')
-
-    useEffect(() => {
-        if(continent){
-            getCountries();
-        }if(continent !== 'All'){
-            dispatch(filterContinent(continent))
-        }
-        
-    }, [continent, getCountries, dispatch])
-
-    const handleChange = (e)=>{
-        setContinent(e.target.value)
-        if(e.target.value === "All"){
-            dispatch(getCountries("asc"))
-        }
-            
-        // )  
+  const handleChange = (e) => {
+   
+    setContinent(e.target.value);
+    if (e.target.value === "All") {
+      e.preventDefault();
+      dispatch(getCountries("asc"));
+    }else{
+        dispatch(filterContinent(e.target.value));
     }
-    return(
-       
+  };
+
+
+function handleSubmit(e){
+  e.preventDefault(); 
+  console.log(input)
+  if(!input){
+    dispatch(getCountries("asc"))
+  }else
+    dispatch(filterActivities(input))
+    setInput('')
+  }
+
+
+
+  return (
+    <div>
+      <fieldset className={styles.container}>
+        <legend className={styles.title} >Filters</legend>
         <div>
-            <fieldset>
-                <legend>Filters</legend>
-                <div>
-                    <select name="continent" value={continent} onChange={handleChange}>
-                        {continents.map((c, index)=>(
-                            <option key={index} >{c.name} </option>
-                        ))}
-                    </select>
-                </div>
-            </fieldset>
+          <label>Continent: </label>
+          <select name="continent" value={continent} onChange={handleChange} className={styles.inputSearch}>
+            {continents.map((c, index) => (
+              <option key={index}>{c.name} </option>
+            ))}
+          </select>
         </div>
-    )
+        <form onSubmit={(e)=>handleSubmit(e)}>
+          <label>Activity: </label>
+          <input type="text" name="input" value={input} className={styles.inputSearch} onChange={(e)=> setInput(e.target.value)}/>
+          <button className={styles.searchButton} type="submit"><FcSearch/></button>
+        </form>
+      </fieldset>
+    </div>
+  );
 }
