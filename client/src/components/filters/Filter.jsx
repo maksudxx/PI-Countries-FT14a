@@ -1,5 +1,5 @@
 import { filterContinent, getCountries , filterActivities} from "../../redux/actions";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 import styles from "./Filter.module.css"
@@ -8,7 +8,7 @@ export default function Filter() {
   const dispatch = useDispatch();
   // const a = useSelector((state) => state.countries)
   // const aux = a.filter((b)=> b.touristActivities.some((z)=> z.name === "Rugby"))
-  // console.log(aux)
+  // console.log(a)
   let continents = [
     { name: "All" },
     { name: "Americas" },
@@ -38,12 +38,10 @@ function handleSubmit(e){
   console.log(input)
   if(!input){
     dispatch(getCountries("asc"))
-  }else
-    dispatch(filterActivities(input))
+  }else 
+  dispatch(filterActivities(input))
     setInput('')
   }
-
-
 
   return (
     <div>

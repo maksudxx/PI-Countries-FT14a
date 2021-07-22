@@ -8,7 +8,7 @@ import {ORDER_COUNTRIES_POPULATION} from "../actions/index";
 const initialState = {
   countries: [],
   countryDetail: {},
-  filterContinents:[]
+  filterCountries:[]
  
 };
 
@@ -17,6 +17,7 @@ export default function rootReducer(state = initialState, action) {
     return {
       ...state,
       countries: action.payload,
+      filterCountries: action.payload
     };
   }
 
@@ -37,21 +38,23 @@ export default function rootReducer(state = initialState, action) {
   if (action.type === FILTER_COUNTRIES_CONTINENT) {
     return {
       ...state,
-      countries: state.countries.filter((country) => country.continent === action.payload)
+      countries: state.filterCountries.filter((country) => country.continent === action.payload)
      
     };
   }
 
   if (action.type === FILTER_COUNTRIES_ACTIVITIES) {
 
-    let a = state.countries.filter((country) => country.touristActivities.some((a)=> a.name === action.payload))
-    console.log('payload: '+ action.payload)
-    console.log('array '+ a)
+    // let a = state.countries.filter((country) => country.touristActivities.some((a)=> a.name.toLowerCase === action.payload.toLowerCase))
+    // console.log('payload: '+ action.payload)
+    // console.log('array '+ a.touristActivities)
     return {
       ...state,
-      countries: state.countries.filter((country) => {
-        return country.touristActivities.some((a)=> a.name === action.payload)
+      countries: state.filterCountries.filter((country) => {
+        return country.touristActivities.some((a)=> a.name.toLowerCase() === action.payload.toLowerCase() || a.name === action.payload) //verifico si cumple con lo que busco
       })
+
+      
      
     };
   }

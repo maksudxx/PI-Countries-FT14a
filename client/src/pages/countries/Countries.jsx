@@ -10,11 +10,14 @@ export default function Countries() {
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
+  console.log(countries)
   
   const next_Page = () => {
     if (countries.length <= page + 10) {
       setPage(page);
-    } else setPage(page + 10);
+    } else{ 
+      setPage(page + 10);
+    }
   };
   const prev_Page = () => {
     if (page < 9) {
@@ -35,23 +38,44 @@ export default function Countries() {
     setOrder()
     dispatch(getCountries(order));
   }, [dispatch, order]);
+  var button = false;
+ 
+    if(countries.length >=10){
+      button = true
+    }
+  
+    let buttonInit = true;
+    let buttonEnd = true;
 
+    if(page === 0){
+      buttonInit = false
+
+    }
+
+    if(page === 240){
+      buttonEnd = false
+    }
+
+
+  console.log(button)
+  
   const filtred = countries.slice(page, page + 10);
   return (
     <div>
       <h1 className={styles.title}>Countries</h1>
       <SearchBar />
-      <div className={styles.container}>
-        <button className={styles.button} onClick={prev_Page}>
+      {button? <div className={styles.container}>
+        {buttonInit?<button className={styles.button} onClick={prev_Page}>
           Back
-        </button>
-        <button className={styles.button} onClick={next_Page}>
+        </button>: <div></div>}
+        {buttonEnd?<button className={styles.button} onClick={next_Page}>
           Next
-        </button>
-      </div>
+        </button>: <div></div>}
+      </div>: <div></div>}
+      
       <ul className={styles.countriesGrid}>
-        {filtred &&
-          filtred.map((country, index) => (
+        { 
+         filtred.map((country, index) => (
             <Cards
               key={index}
               flag={country.flag}
