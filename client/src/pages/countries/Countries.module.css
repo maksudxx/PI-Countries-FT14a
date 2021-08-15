@@ -3,17 +3,12 @@
   grid-template-columns: repeat(auto-fill, 230px);
   gap: 40px;
   justify-content: center;
+  width: 400%;
+  margin-top: 30px;
 }
-.title {
-  color: #ffffff;
-  text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
-    #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
-    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
-  font-size: 3rem;
-}
+
 .button {
-  color: #ffffff;
-  text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+   text-shadow: rgb(90, 90, 90) 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
   font-size: 1.5rem;
@@ -31,5 +26,15 @@
 }
 
 .container {
-  justify-content: space-around;
+  display: flex;
+  width: 40%
+}
+
+
+.options {
+  border-right: 3px solid;
+}
+.pagination {
+  width: 400%;
+  margin: 20px
 }

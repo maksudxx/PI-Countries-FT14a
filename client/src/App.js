@@ -5,6 +5,7 @@ import NavBar from './components/navbar/NavBar'
 import Countries from './pages/countries/Countries';
 import DetailCountry from './pages/detailCountry/DetailCountry';
 import CreateActivity from './pages/createActivity/CreateActivity';
+import About from './pages/about/About';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/countries" component={Countries}/>
           <Route exact path="/countries/:id" component={DetailCountry}/>
           <Route exact path='/activity' component={CreateActivity}/>
+          <Route exact path='/About' component={About}/>
         </Route>
       </Switch>
     </div>

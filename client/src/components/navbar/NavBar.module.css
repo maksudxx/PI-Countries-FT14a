@@ -2,8 +2,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(0, 0, 0);
-    border: 3px solid rgb(252, 66, 221);  
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgb(40, 152, 185) 0%, rgba(237,237,237,1) 100%, rgb(255, 255, 255) 100%);
+    border-bottom: 3px solid #f73b99;
 }
 
 .imgHome{
@@ -22,13 +23,17 @@
 
 .buttonMenu{
   /* border-left: 2px solid white;   */
-  color:rgb(252, 252, 252);
-  height: 150px;
+  height: 60px;
   display: flex;
   align-items: center;
-  text-shadow: rgb(88, 85, 85) 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #f73b99 0px 0px 20px, #fd3c9c 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+  color: white;
 }
 
 .buttonMenu:hover{
-    background-color: rgba(180, 141, 170, 0.411);
+    background-color: rgba(248, 248, 248, 0.411);
+}
+
+.titleNav{
+    margin-left: 20px;
+    color: white;
 }

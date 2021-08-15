@@ -1,18 +1,15 @@
-import IMG from "../../Img/home.gif";
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import Order from "../order/Order";
 import Filter from "../filters/Filter";
+import SearchBar from "../searchBar/SearchBar";
 export default function NavBar() {
   return (
-    <nav className={styles.container}>
-      <Link to="/home">
-        <img src={IMG} alt="" width={65} className={styles.imgHome} />
-      </Link>
-      <Order/>
-      <Filter/>
+    <nav class="navbar navbar-dark bg-dark">
+      <h2 className={styles.titleNav}>Countries APP</h2>
+      <SearchBar />
       <div className={styles.menu}>
-        <Link to="/countries">
+        <Link to="/home">
           <div className={styles.buttonMenu}>
             <p className={styles.option}>View Countries</p>
           </div>

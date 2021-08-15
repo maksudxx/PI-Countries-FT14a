@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cards from "../../components/cards/Cards";
 import styles from "./Countries.module.css";
-import SearchBar from "../../components/searchBar/SearchBar";
+import Filter from "../../components/filters/Filter"
+import Order from "../../components/order/Order"
 
 export default function Countries() {
   const countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState("asc");
-  console.log(countries)
-  
+
   const next_Page = () => {
     if (countries.length <= page + 10) {
       setPage(page);
-    } else{ 
+    } else {
       setPage(page + 10);
     }
   };
@@ -35,56 +35,84 @@ export default function Countries() {
   }, [countries]);
 
   useEffect(() => {
-    setOrder()
+    setOrder();
     dispatch(getCountries(order));
   }, [dispatch, order]);
   var button = false;
- 
-    if(countries.length >=10){
-      button = true
-    }
-  
-    let buttonInit = true;
-    let buttonEnd = true;
 
-    if(page === 0){
-      buttonInit = false
+  if (countries.length >= 10) {
+    button = true;
+  }
 
-    }
+  let buttonInit = true;
+  let buttonEnd = true;
 
-    if(page === 240){
-      buttonEnd = false
-    }
+  if (page === 0) {
+    buttonInit = false;
+  }
 
+  if (page === 240) {
+    buttonEnd = false;
+  }
 
-  console.log(button)
-  
-  const filtred = countries.slice(page, page + 10);
+  //const filtred = countries.slice(page, page + 12);
   return (
-    <div>
-      <h1 className={styles.title}>Countries</h1>
-      <SearchBar />
-      {button? <div className={styles.container}>
-        {buttonInit?<button className={styles.button} onClick={prev_Page}>
-          Back
-        </button>: <div></div>}
-        {buttonEnd?<button className={styles.button} onClick={next_Page}>
-          Next
-        </button>: <div></div>}
-      </div>: <div></div>}
-      
-      <ul className={styles.countriesGrid}>
-        { 
-         filtred.map((country, index) => (
-            <Cards
-              key={index}
-              flag={country.flag}
-              name={country.name}
-              continent={country.continent}
-              id={country.id}
-            />
-          ))}
-      </ul>
+    <div className={styles.container}>
+      <div className={styles.options}>
+      <div>
+       <Filter/>
+       </div>
+       <Order/>
+       
+      </div>
+      <div align="center">
+        
+          {button ? (
+            <div className={styles.pagination}>
+              {buttonInit ? (
+                <button class="btn btn-dark" onClick={prev_Page}>
+                  Back
+                </button>
+              ) : (
+                <div></div>
+              )}
+              {buttonEnd ? (
+                <button
+                  className={styles.button}
+                  class="btn btn-dark"
+                  onClick={next_Page}
+                >
+                  Next
+                </button>
+              ) : (
+                <div></div>
+              )}
+            </div>
+          ) : (
+            <div></div>
+          )}
+          <ul className={styles.countriesGrid}>
+            {countries?.length > 0 ? (
+              countries
+                ?.slice(page, page + 12)
+                .map((country, index) => (
+                  <Cards
+                    key={index}
+                    flag={country.flag}
+                    name={country.name}
+                    continent={country.continent}
+                    population={country.population}
+                    id={country.id}
+                  />
+                ))
+            ) : (
+              <div>
+                <p>No Results</p>
+              </div>
+            )}
+          </ul>
+        
+      </div>
     </div>
   );
 }

@@ -55,8 +55,8 @@ function handleSubmit(e){
             ))}
           </select>
         </div>
+        <label>Activity: </label>
         <form onSubmit={(e)=>handleSubmit(e)}>
-          <label>Activity: </label>
           <input type="text" name="input" value={input} className={styles.inputSearch} onChange={(e)=> setInput(e.target.value)}/>
           <button className={styles.searchButton} type="submit"><FcSearch/></button>
         </form>

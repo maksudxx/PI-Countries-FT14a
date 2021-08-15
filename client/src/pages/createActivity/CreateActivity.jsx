@@ -51,7 +51,7 @@ export default function CreateActivity() {
         body: JSON.stringify(body),
       });
 
-      alert("done..!");
+      alert("Tourist Activity created..!");
       setInput({
         name: "",
         duration: ""
@@ -107,7 +107,7 @@ export default function CreateActivity() {
           ))}
         </select>
         <br />
-        <button type="submit" className={styles.button}>Create Activity</button>
+        <button type="submit" className={`${styles.button} btn btn-dark`}>Create Activity</button>
       </form>
     </div>
   );

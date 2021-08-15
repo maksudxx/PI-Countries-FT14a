@@ -1,12 +1,6 @@
 .card{
-    border: 20px solid rgba(224, 155, 245, 0);
-    list-style: none;
-    background: linear-gradient(to bottom right, rgb(251, 253, 253), rgb(134, 241, 255));
-    border-radius: 10px;
-    height: 270px;
-    align-items: center;
-    color: rgb(0, 0, 0);
-    font-size: 1.3rem
+   border: 3px solid #000000;
+   border-radius: 10px
 }
 
 .card:hover{

@@ -5,8 +5,9 @@ export default function LandingPage(){
     return(
         <div className={Styles.container} align="center">
             <div>
-                <h1 className={Styles.title}> WELCOME TO COUNTRIES APP</h1>
+                <h1 className={Styles.title}> COUNTRIES APP</h1>
             </div>
+            <br/>
            
            <Link to='/home'>
            <div className={Styles.buttonHome}>

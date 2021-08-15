@@ -13,14 +13,10 @@ export default function DetailCountry() {
     dispatch(getCountryDetail(id.id));
   }, [dispatch, id.id]);
 
-  let tourist = [];
-  for (let x in country.touristActivities) {
-    tourist.push(country.touristActivities[x]["name"].split(""));
-  }
-  return (
+   return (
     <div align="center">
         <Link to="/countries">
-        <div className={styles.button}>Back</div>
+        <div className={`btn btn-dark ${styles.button}`} >Back</div>
       </Link>
       <div className={styles.container}>
         <h3>DETAILS</h3>
@@ -46,22 +42,29 @@ export default function DetailCountry() {
         <p>
           <strong>TOURIST ACTIVITIES:</strong>
         </p>
-        <table className={styles.tabla}>
-          <tr>
-            <td>name</td>
-            <td>difficulty</td>
-            <td>duration</td>
-            <td>season</td>
-          </tr>
-          {country.touristActivities?.map((activitie, id) => (
-            <tr key={id}>
-              <td>{activitie.name}</td>
-              <td>{activitie.difficulty}</td>
-              <td>{activitie.duration}</td>
-              <td>{activitie.season}</td>
-            </tr>
-          ))}
-        </table>
+        { country.touristActivities?.length > 0 ?(
+          <table className={`${styles.tabla}  "table"`}>
+          <thead>
+            <td>NAME</td>
+            <td>DIFFICULTY</td>
+            <td>DURATION</td>
+            <td>SEASON</td>
+          </thead>
+          {
+            
+              country.touristActivities?.map((activitie, id) => (
+                <tr key={id}>
+                  <td>{activitie.name}</td>
+                  <td>{activitie.difficulty}</td>
+                  <td>{activitie.duration}</td>
+                  <td>{activitie.season}</td>
+                </tr>
+              )
+            )
+          }
+        </table>): <div> <p> <strong>TOURIST ACTIVITIES NOT FOUND</strong></p></div>
+        }
+        
       </div>
       
     </div>

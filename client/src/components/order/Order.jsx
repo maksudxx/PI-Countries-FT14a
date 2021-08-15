@@ -19,8 +19,8 @@ export default function Order() {
     console.log(e.target.value)
   };
   return (
-    <div>
-        <h4 className={styles.title}>ORDER COUNTRIES BY</h4>
+    <div className={styles.container}>
+        <p className={styles.title}>ORDER COUNTRIES BY</p>
         <div className={styles.order}>
           <label>Population: </label>
           <select value={order} onChange={handleChangePopulation}>
