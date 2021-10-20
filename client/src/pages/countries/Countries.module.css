@@ -27,14 +27,18 @@
 
 .container {
   display: flex;
-  width: 40%
+  align-items: center;
 }
 
 
-.options {
-  border-right: 3px solid;
-}
+
 .pagination {
   width: 400%;
   margin: 20px
+}
+
+.filtros{
+  display: block;
+  align-items: flex-start;
+  height: 1200px;
 }

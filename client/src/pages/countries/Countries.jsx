@@ -57,16 +57,14 @@ export default function Countries() {
 
   //const filtred = countries.slice(page, page + 12);
   return (
-    <div className={styles.container}>
-      <div className={styles.options}>
-      <div>
-       <Filter/>
-       </div>
-       <Order/>
-       
-      </div>
-      <div align="center">
-        
+    <div className={styles.container}> 
+        <div className={styles.filtros}>
+          <div>
+            <Order/>
+          </div>
+          <div><Filter /></div>
+        </div>
+        <div align="center">
           {button ? (
             <div className={styles.pagination}>
               {buttonInit ? (

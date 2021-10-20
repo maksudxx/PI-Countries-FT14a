@@ -17,7 +17,11 @@ router.get("/countries", async (req, res) => {
 
     let countries = await Country.findAll();
     if (countries.length === 0) {
-      countries = await axios.get(`https://restcountries.eu/rest/v2/all`);
+      countries = await axios.get(`https://restcountries.com/v2/all`);
+      //countries = await axios.get(`https://restcountries.com/v3.1/all`);
+      
+      console.log(countries.data.name);
+      
       countries.data.map(async (c) => {
         await Country.create({
           id: c.alpha3Code,
@@ -38,6 +42,7 @@ router.get("/countries", async (req, res) => {
         include: { model: TouristActivity}
       });
       res.json(countrie);
+      //console.log(countrie);
     } else {
       const matchCountrie = await Country.findAll({
         where: { name: { [Op.iLike]: `%${name}%` } },
