@@ -46,19 +46,22 @@ function handleSubmit(e){
   return (
     <div>
       <fieldset className={styles.container}>
-        <legend className={styles.title} >Filters</legend>
+        <p>FILTERS</p>
         <div>
-          <label>Continent: </label>
-          <select name="continent" value={continent} onChange={handleChange} className={styles.inputSearch}>
+          <label className={styles.title}>Continent: </label>
+          <select name="continent" value={continent} onChange={handleChange}>
             {continents.map((c, index) => (
               <option key={index}>{c.name} </option>
             ))}
           </select>
         </div>
-        <label>Activity: </label>
-        <form onSubmit={(e)=>handleSubmit(e)}>
-          <input type="text" name="input" value={input} className={styles.inputSearch} onChange={(e)=> setInput(e.target.value)}/>
+        <br />
+        
+        <form onSubmit={(e)=>handleSubmit(e)} className={styles.search}>
+          <div className={styles.searchBox}>
+          <input type="text" name="input" value={input} className={styles.inputSearch} onChange={(e)=> setInput(e.target.value)}    placeholder='Tourist activities...'/>
           <button className={styles.searchButton} type="submit"><FcSearch/></button>
+          </div>
         </form>
       </fieldset>
     </div>

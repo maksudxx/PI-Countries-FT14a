@@ -3,7 +3,9 @@
 }
 
 .order {
-  margin: 5px;
+ margin: 15px;
+  display: inline-block;
+  align-items: center;
 }
 
 
@@ -12,3 +14,10 @@
 
 }
 
+.selectores {
+  display: block;
+}
+
+.label{
+  margin-bottom: 5px;
+}

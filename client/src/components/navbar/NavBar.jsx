@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
-import Order from "../order/Order";
-import Filter from "../filters/Filter";
 import SearchBar from "../searchBar/SearchBar";
 export default function NavBar() {
   return (

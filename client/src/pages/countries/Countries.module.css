@@ -1,6 +1,6 @@
 .countriesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 230px);
+  grid-template-columns: repeat(auto-fill, 200px);
   gap: 40px;
   justify-content: center;
   width: 400%;
@@ -27,7 +27,6 @@
 
 .container {
   display: flex;
-  align-items: center;
 }
 
 
@@ -37,8 +36,8 @@
   margin: 20px
 }
 
-.filtros{
+.filtrado{
   display: block;
-  align-items: flex-start;
-  height: 1200px;
+  border-right: 1px solid;
 }
+

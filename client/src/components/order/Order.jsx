@@ -22,17 +22,16 @@ export default function Order() {
     <div className={styles.container}>
         <p className={styles.title}>ORDER COUNTRIES BY</p>
         <div className={styles.order}>
-          <label>Population: </label>
-          <select value={order} onChange={handleChangePopulation}>
+          <label className={styles.label}>Population:</label>
+          <select value={order} onChange={handleChangePopulation} className={styles.selectores}>
             <option value={"ASC"}>ASC</option>
             <option value={"DESC"}>DESC</option>
         </select>
         </div>
          
        <div className={styles.order}>
-         <label>Name: </label>
-       <select value={order} onChange={handleChange}>
-         
+        <label className={styles.label}>Name: </label>
+       <select value={order} onChange={handleChange} className={styles.selectores}>
          <option value={"ASC"}>ASC</option>
          <option value={"DESC"}>DESC</option>
        </select>

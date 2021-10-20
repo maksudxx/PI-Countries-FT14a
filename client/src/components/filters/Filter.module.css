@@ -1,17 +1,31 @@
 .inputSearch {
-  border-radius: 8px;
-  margin-bottom: 35px;
-  margin-top: 0;
+ width: 170px;
+  padding: 5px 30px 5px 10px;
+  margin-bottom: 5px;
 }
 
 .searchButton {
+  position: absolute;
+  right: 0;
+  top: 0;
   cursor: pointer;
+  height: 100%;
   border: none;
   background: none;
 }
 
 .container {
     margin-top: 50px;
-    height: 100px;
+}
 
+.title{
+  margin-right: 10px;
+}
+
+.search{
+  display: flex;
+  justify-content: center;
+}
+.searchBox{
+  position: relative;
 }
