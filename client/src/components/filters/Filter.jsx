@@ -46,10 +46,10 @@ function handleSubmit(e){
   return (
     <div>
       <fieldset className={styles.container}>
-        <p>FILTERS</p>
+        <b><p>FILTERS</p></b>
         <div>
-          <label className={styles.title}>Continent: </label>
-          <select name="continent" value={continent} onChange={handleChange}>
+          <b><label className={styles.title}>Continent: </label></b>
+          <select name="continent" value={continent} onChange={handleChange} className={styles.select}>
             {continents.map((c, index) => (
               <option key={index}>{c.name} </option>
             ))}

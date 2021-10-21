@@ -5,3 +5,17 @@
 .title{
     margin-top: 30px;
 }
+
+.imagesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 170px);
+    gap: 10px;
+    justify-content: center;
+   
+    margin-top: 30px;
+  }
+  
+  .image {
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+  }

@@ -66,26 +66,24 @@ export default function Countries() {
         {button ? (
           <div className={styles.pagination}>
             {buttonInit ? (
-              <button class="btn btn-dark" onClick={prev_Page}>
+              <button className="btn btn-dark" onClick={prev_Page}>
                 Back
               </button>
             ) : (
-              <button class="btn btn-dark" onClick={prev_Page} disabled={true}>
+              <button className="btn btn-dark" onClick={prev_Page} disabled={true}>
                 Back
               </button>
             )}
             {buttonEnd ? (
               <button
-                className={styles.button}
-                class="btn btn-dark"
+                className={`btn btn-dark`}
                 onClick={next_Page}
               >
                 Next
               </button>
             ) : (
               <button
-                className={styles.button}
-                class="btn btn-dark"
+                className="btn btn-dark"
                 onClick={next_Page}
                 disabled={true}
               >

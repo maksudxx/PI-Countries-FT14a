@@ -2,6 +2,12 @@
  width: 170px;
   padding: 5px 30px 5px 10px;
   margin-bottom: 5px;
+  border-radius: 8px
+}
+
+.select{
+  border-radius: 6px;
+  text-align-last: center;
 }
 
 .searchButton {

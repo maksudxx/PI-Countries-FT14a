@@ -1,7 +1,7 @@
 import { getCountries } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import styles from "./CreateActivity.module.css"
+import styles from "./CreateActivity.module.css";
 
 export default function CreateActivity() {
   const dispatch = useDispatch();
@@ -14,11 +14,15 @@ export default function CreateActivity() {
     countries: [],
   });
 
-  const seasons = [{name: 'Autumn'}, {name: 'Winter'}, {name: 'Spring'}, {name: 'Summer'}]
-
+  const seasons = [
+    { name: "Autumn" },
+    { name: "Winter" },
+    { name: "Spring" },
+    { name: "Summer" },
+  ];
 
   useEffect(() => {
-    dispatch(getCountries('asc'));
+    dispatch(getCountries("asc"));
   }, [dispatch]);
 
   let arrayCountries = [];
@@ -34,8 +38,6 @@ export default function CreateActivity() {
       [e.target.name]: e.target.value,
     });
   };
-
- 
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -54,61 +56,89 @@ export default function CreateActivity() {
       alert("Tourist Activity created..!");
       setInput({
         name: "",
-        duration: ""
-      })
+        duration: "",
+      });
     } catch (err) {
       console.log(err.message);
     }
   }
   return (
-    <div className={styles.container}>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Activity..."
-          value={input.name}
-          onChange={handleInputChange}
-          className={styles.inputText}
-        />{" "}
-        <br />
-        <select onChange={handleInputChange} name="difficulty" className={styles.inputText}>
-          <option>----CHOOSE A DIFFICULTY----</option>
-          <option value={"1"}>1</option>
-          <option value={"2"}>2</option>
-          <option value={"3"}>3</option>
-          <option value={"4"}>4</option>
-          <option value={"5"}>5</option>
-          
-        </select>
-        <br /> 
-        <input
-          type="text"
-          name="duration"
-          placeholder="Duration [hs]"
-          value={input.duration}
-          onChange={handleInputChange}
-          className={styles.inputText}
-        />{" "}
-        <br />
-        <select name="season" onChange={handleInputChange} className ={styles.inputText}>
-          <option>----CHOOSE A SEASON----</option>
-          {seasons.map((season)=>(
-            <option value={season.name}>{season.name}</option>
-          ))}
-        </select>
-        <br />
-        <h4 className={styles.subTitle}>Select countries</h4>
-        <select multiple requires name="countries">
-          {countries.map((c) => (
-            <option key={c.id} value={c.id} onClick={clickCountry}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-        <br />
-        <button type="submit" className={`${styles.button} btn btn-dark`}>Create Activity</button>
-      </form>
-    </div>
+    <>
+      <br />
+      <u>
+        <h2>CREATE TOURIST ACTIVITY</h2>
+      </u>
+      <div className={styles.container}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Activity..."
+            value={input.name}
+            onChange={handleInputChange}
+            className={styles.inputText}
+            required={true}
+          />{" "}
+          <br />
+          <select
+            onChange={handleInputChange}
+            name="difficulty"
+            className={styles.select}
+          >
+            <option>*******DIFFICULTY*******</option>
+            <option value={"1"}>1</option>
+            <option value={"2"}>2</option>
+            <option value={"3"}>3</option>
+            <option value={"4"}>4</option>
+            <option value={"5"}>5</option>
+          </select>
+          <br />
+          <input
+            type="text"
+            name="duration"
+            placeholder="Duration [hs]"
+            value={input.duration}
+            onChange={handleInputChange}
+            className={styles.inputText}
+            required={true}
+          />{" "}
+          <br />
+          <select
+            name="season"
+            onChange={handleInputChange}
+            className={styles.select}
+          >
+            <option>*******SEASON*******</option>
+            {seasons.map((season) => (
+              <option value={season.name}>{season.name}</option>
+            ))}
+          </select>
+          <br />
+          <h4 className={styles.subTitle}>Select countries</h4>
+          <select
+            multiple
+            requires
+            name="countries"
+            className={styles.containerCountries}
+          >
+            {countries.length > 0 ? (
+              countries.map((c) => (
+                <option key={c.id} value={c.id} onClick={clickCountry}>
+                  {c.name}
+                </option>
+              ))
+            ) : (
+              <option disabled={true}>Country not found</option>
+            )}
+          </select>
+          <br />
+          <button type="submit" className={`${styles.button} btn btn-dark`}>
+            Create Activity
+          </button>
+        </form>
+      </div>
+      <br />
+      <br />
+    </>
   );
 }
