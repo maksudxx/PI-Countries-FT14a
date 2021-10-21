@@ -1,11 +1,16 @@
 .container{
-    border: 5px solid #000000;
-    width: 500px;
+    display: flex;
+    width: 100%;
+    height: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: ghostwhite;
+   justify-content: center;
+}
 
+.country{
+  display: flex;
+  justify-content: space-around;
 }
 
 .button{
@@ -17,11 +22,3 @@
     background-color: rgb(44, 39, 39);
 }
 
-.tabla {
-  table-layout: fixed;
-  width: 95%;
-  border-collapse: collapse;
-  border: 4px solid rgb(255, 255, 255);
-  text-align: center;
-  margin-bottom: 10px;
-}

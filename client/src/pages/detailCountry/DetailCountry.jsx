@@ -24,77 +24,95 @@ export default function DetailCountry() {
   }, [dispatch, id.id]);
 
   return (
-    <div align="center">
-      <Link to="/countries">
+  
+    <div className={styles.container}>
+      <div >
+        <div className={styles.country}>
+          <div>
+            <h3>
+              {country.name} ({country.id})
+            </h3>
+            <img src={country.flag} alt="flag" width={250} />
+          </div>
+          <div>
+            <p>
+              <br />
+              <strong>CAPITAL:</strong> {country.capital}
+            </p>
+            <p>
+              <strong>SUB-REGION:</strong> {country.subregion}
+            </p>
+            <p>
+              <strong>AREA:</strong> {country.area}Km²
+            </p>
+            <p>
+              <strong>POPULATION:</strong> {country.population} habitants
+            </p>
+          </div>
+        </div>
+        <br /> <br />
+        <div>
+          <p>
+            <strong>TOURIST ACTIVITIES:</strong>
+          </p>
+          {country.touristActivities?.length > 0 ? (
+            <TableContainer component={Paper}>
+              <Table
+                sx={{ minWidth: 700 }}
+                size="small"
+                aria-label="a dense table"
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">
+                      <b>NAME</b>
+                    </TableCell>
+                    <TableCell align="center">
+                      <b>DIFFICULTY</b>
+                    </TableCell>
+                    <TableCell align="center">
+                      <b>DURATION</b>
+                    </TableCell>
+                    <TableCell align="center">
+                      <b>SEASON</b>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {country.touristActivities?.map((activitie, id) => (
+                    <TableRow
+                      key={id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell align="center">{activitie.name}</TableCell>
+                      <TableCell align="center">
+                        {activitie.difficulty}
+                      </TableCell>
+                      <TableCell align="center">{`${activitie.duration} hs`}</TableCell>
+                      <TableCell align="center">{activitie.season}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <div>
+              {" "}
+              <p>
+                {" "}
+                <strong>
+                  TOURIST ACTIVITIES NOT FOUND
+                  <Link to="/activity"> (CREATE A NEW ACTIVITY)</Link>{" "}
+                </strong>
+              </p>{" "}
+            </div>
+          )}
+        </div>
+        <Link to="/countries">
         <div className={`btn btn-dark ${styles.button}`}>Back</div>
       </Link>
-      <div className={styles.container}>
-        <h3>DETAILS</h3>
-        <img src={country.flag} alt="flag" width={250} />
-        <p>
-          <strong>ID COUNTRY:</strong> {country.id}
-        </p>
-        <p>
-          <strong>COUNTRY:</strong> {country.name}
-        </p>
-        <p>
-          <strong>CAPITAL:</strong> {country.capital}
-        </p>
-        <p>
-          <strong>SUB-REGION:</strong> {country.subregion}
-        </p>
-        <p>
-          <strong>AREA:</strong> {country.area}Km²
-        </p>
-        <p>
-          <strong>POPULATION:</strong> {country.population} habitants
-        </p>
-        <p>
-          <strong>TOURIST ACTIVITIES:</strong>
-        </p>
-        {country.touristActivities?.length > 0 ? (
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 300 }}
-              size="small"
-              aria-label="a dense table"
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">NAME</TableCell>
-                  <TableCell align="center">DIFFICULTY</TableCell>
-                  <TableCell align="center">DURATION</TableCell>
-                  <TableCell align="center">SEASON</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {country.touristActivities?.map((activitie, id) => (
-                  <TableRow
-                    key={id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell align="center">{activitie.name}</TableCell>
-                    <TableCell align="center">{activitie.difficulty}</TableCell>
-                    <TableCell align="center">{activitie.duration}</TableCell>
-                    <TableCell align="center">{activitie.season}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ) : (
-          <div>
-            {" "}
-            <p>
-              {" "}
-              <strong>
-                TOURIST ACTIVITIES NOT FOUND
-                <Link to="/activity"> (CREATE A NEW ACTIVITY)</Link>{" "}
-              </strong>
-            </p>{" "}
-          </div>
-        )}
       </div>
+      
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import styles from "./CreateActivity.module.css";
 
+
+
 export default function CreateActivity() {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
@@ -53,7 +55,7 @@ export default function CreateActivity() {
         body: JSON.stringify(body),
       });
 
-      alert("Tourist Activity created..!");
+      
       setInput({
         name: "",
         duration: "",
