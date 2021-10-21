@@ -6,6 +6,7 @@ import styles from "./Countries.module.css";
 import Filter from "../../components/filters/Filter"
 import Order from "../../components/order/Order"
 
+
 export default function Countries() {
   const countries = useSelector((state) => state.countries);
   const dispatch = useDispatch();
@@ -55,16 +56,16 @@ export default function Countries() {
     buttonEnd = false;
   }
 
-  //const filtred = countries.slice(page, page + 12);
+
   return (
+    
     <div className={styles.container}> 
     <div className={styles.filtrado}>
       <Filter/>
-      <br />
-      <br />
       <Order/>
     </div>
         <div align="center">
+          
           {button ? (
             <div className={styles.pagination}>
               {buttonInit ? (
@@ -72,7 +73,9 @@ export default function Countries() {
                   Back
                 </button>
               ) : (
-                <div></div>
+                <button class="btn btn-dark" onClick={prev_Page} disabled={true}>
+                  Back
+                </button>
               )}
               {buttonEnd ? (
                 <button
@@ -83,7 +86,14 @@ export default function Countries() {
                   Next
                 </button>
               ) : (
-                <div></div>
+                <button
+                  className={styles.button}
+                  class="btn btn-dark"
+                  onClick={next_Page}
+                  disabled={true}
+                >
+                  Next
+                </button>
               )}
             </div>
           ) : (
