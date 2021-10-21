@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import SearchBar from "../searchBar/SearchBar";
+import Logo from "../../img/logo.gif";
 export default function NavBar() {
   return (
     <nav class="navbar navbar-dark bg-dark">
-      <h2 className={styles.titleNav}>Countries APP</h2>
+      <div className={styles.containerLogo}>
+        <img src={Logo} alt="logo" className={styles.logo} />
+        <h2 className={styles.title}>Countries APP</h2>
+      </div>
       <SearchBar />
       <div className={styles.menu}>
         <Link to="/home">

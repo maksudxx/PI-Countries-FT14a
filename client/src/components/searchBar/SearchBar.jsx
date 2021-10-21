@@ -1,4 +1,3 @@
-import { FcSearch } from "react-icons/fc";
 import styles from './SearchBar.module.css';
 import { getCountriesName, getCountries } from "../../redux/actions";
 import {useState, useEffect} from "react"

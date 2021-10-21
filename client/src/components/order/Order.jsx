@@ -20,9 +20,9 @@ export default function Order() {
   };
   return (
     <div className={styles.container}>
-        <p className={styles.title}>ORDER COUNTRIES BY</p>
+        <b><p className={styles.title}>ORDER COUNTRIES BY</p></b>
         <div className={styles.order}>
-          <label className={styles.label}>Population:</label>
+          <b><label className={styles.label}>Population</label></b>
           <select value={order} onChange={handleChangePopulation} className={styles.selectores}>
             <option value={"ASC"}>ASC</option>
             <option value={"DESC"}>DESC</option>
@@ -30,7 +30,7 @@ export default function Order() {
         </div>
          
        <div className={styles.order}>
-        <label className={styles.label}>Name: </label>
+        <b><label className={styles.label}>Name </label></b>
        <select value={order} onChange={handleChange} className={styles.selectores}>
          <option value={"ASC"}>ASC</option>
          <option value={"DESC"}>DESC</option>

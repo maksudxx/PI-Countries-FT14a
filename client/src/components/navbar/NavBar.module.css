@@ -33,7 +33,16 @@
     background-color: rgba(248, 248, 248, 0.411);
 }
 
-.titleNav{
+.logo{
     margin-left: 20px;
+    width: 80px
+}
+
+.title{
     color: white;
+}
+
+.containerLogo{
+    display: flex;
+    align-items: center;
 }

@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Cards from "../../components/cards/Cards";
 import styles from "./Countries.module.css";
-import Filter from "../../components/filters/Filter"
-import Order from "../../components/order/Order"
-
+import Filter from "../../components/filters/Filter";
+import Order from "../../components/order/Order";
 
 export default function Countries() {
   const countries = useSelector((state) => state.countries);
@@ -56,68 +55,68 @@ export default function Countries() {
     buttonEnd = false;
   }
 
-
   return (
-    
-    <div className={styles.container}> 
-    <div className={styles.filtrado}>
-      <Filter/>
-      <Order/>
-    </div>
-        <div align="center">
-          
-          {button ? (
-            <div className={styles.pagination}>
-              {buttonInit ? (
-                <button class="btn btn-dark" onClick={prev_Page}>
-                  Back
-                </button>
-              ) : (
-                <button class="btn btn-dark" onClick={prev_Page} disabled={true}>
-                  Back
-                </button>
-              )}
-              {buttonEnd ? (
-                <button
-                  className={styles.button}
-                  class="btn btn-dark"
-                  onClick={next_Page}
-                >
-                  Next
-                </button>
-              ) : (
-                <button
-                  className={styles.button}
-                  class="btn btn-dark"
-                  onClick={next_Page}
-                  disabled={true}
-                >
-                  Next
-                </button>
-              )}
-            </div>
-          ) : (
-            <div></div>
-          )}
-          <ul className={styles.countriesGrid}>
-            {countries?.length > 0 ? (
-              countries
-                ?.slice(page, page + 12)
-                .map((country, index) => (
-                  <Cards
-                    key={index}
-                    flag={country.flag}
-                    name={country.name}
-                    continent={country.continent}
-                    population={country.population}
-                    id={country.id}
-                  />
-                ))
+    <div className={styles.container}>
+      <div className={styles.filtrado}>
+        <Filter />
+        <Order />
+      </div>
+      <div align="center">
+        <br />
+        {button ? (
+          <div className={styles.pagination}>
+            {buttonInit ? (
+              <button class="btn btn-dark" onClick={prev_Page}>
+                Back
+              </button>
             ) : (
-              null
+              <button class="btn btn-dark" onClick={prev_Page} disabled={true}>
+                Back
+              </button>
             )}
-          </ul>
-        
+            {buttonEnd ? (
+              <button
+                className={styles.button}
+                class="btn btn-dark"
+                onClick={next_Page}
+              >
+                Next
+              </button>
+            ) : (
+              <button
+                className={styles.button}
+                class="btn btn-dark"
+                onClick={next_Page}
+                disabled={true}
+              >
+                Next
+              </button>
+            )}
+          </div>
+        ) : (
+          <div></div>
+        )}
+        <br />
+        <ul className={styles.countriesGrid}>
+          {countries?.length > 0 ? (
+            countries
+              ?.slice(page, page + 12)
+              .map((country, index) => (
+                <Cards
+                  key={index}
+                  flag={country.flag}
+                  name={country.name}
+                  continent={country.continent}
+                  population={country.population}
+                  id={country.id}
+                />
+              ))
+          ) : (
+            <div align="center" width={1600}>
+              <h1>Error 404 country not found</h1>
+            </div>
+          )}
+        </ul>
       </div>
     </div>
   );
