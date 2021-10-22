@@ -55,7 +55,7 @@ export default function CreateActivity() {
         body: JSON.stringify(body),
       });
 
-      
+      alert('Tourist Activitie created')
       setInput({
         name: "",
         duration: "",

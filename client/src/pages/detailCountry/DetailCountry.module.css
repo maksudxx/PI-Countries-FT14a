@@ -4,7 +4,8 @@
     height: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: ghostwhite;
+    background: rgb(47,0,235);
+background: linear-gradient(90deg, rgba(47,0,235,1) 0%, rgba(40,233,255,1) 0%, rgba(59,255,88,1) 100%, rgba(29,253,141,1) 100%);
    justify-content: center;
 }
 

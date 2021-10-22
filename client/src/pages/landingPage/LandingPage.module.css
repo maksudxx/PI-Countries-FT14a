@@ -1,25 +1,26 @@
 .container {
-  margin-top: 15%;
-}
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../Img/fondo.jpg)
+ }
 
 .title {
   font-size: 5rem;
- color: #202c2d;
-background: #FFFFFF;
-text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5, -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5, -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5, -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
+ color: #daffd9;
+
+text-shadow: 0 1px #0ad403, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5, -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5, -4px 5px #000000, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5, -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
 }
 
 .buttonHome {
-  color: #000000;
+  color: #dbffcb;
   font-size: 3rem;
-  border: 6px solid #000000;
-  height: 80px;
-  width: 180px;
+  border: 6px solid #09ff00;
   border-radius: 20px;
-  /* margin-left: 40%; */
 }
 .buttonHome:hover {
-  color: black;
-  background-color: gray;
+  color: rgb(0, 65, 40);
+  background-color: rgb(193, 255, 122);
   
 }

@@ -13,12 +13,12 @@ import styles from './About.module.css'
 export default function About() {
   return (
     <div>
-      <h1 className={styles.title}>PI-COUNTRIES</h1>
+      <h1 className={styles.title}>COUNTRIES APP</h1>
       <p className={styles.content}>
         <strong>
           This project was created as part of my fullstack developer education
           at Henry bootcamp. In order to map all the different Countries, this
-          app consumes data from the countries API. It is also possible to
+          app consumes data from the <a href="https://restcountries.com/" target="_blank" without rel="noreferrer">countries API</a>. It is also possible to
           create a new tourist Activity , entering a name, difficulty, duration,
           season and countries. Any feedback you can provide will be greatly
           appreciated. Thank you.
