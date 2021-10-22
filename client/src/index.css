@@ -1,8 +1,6 @@
 body {
   margin: 0;
   font-family: 'Signika', sans-serif;
-  background: rgb(47,0,235);
-background: linear-gradient(90deg, rgba(47,0,235,1) 0%, rgba(40,233,255,1) 0%, rgba(59,255,88,1) 100%, rgba(29,253,141,1) 100%);
   --webkit-background-size: 100% 100%;           /* Safari 3.0 */
   -moz-background-size: 100% 100%;           /* Gecko 1.9.2 (Firefox 3.6) */
     -o-background-size: 100% 100%;           /* Opera 9.5 */
