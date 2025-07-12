@@ -13,10 +13,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={LandingPage}/>
         <Route path="/">
           <NavBar/>
-          <Route exact path="/home" component={Countries}/>
+          <Route exact path="/" component={Countries}/>
           <Route exact path="/countries" component={Countries}/>
           <Route exact path="/countries/:id" component={DetailCountry}/>
           <Route exact path='/activity' component={CreateActivity}/>

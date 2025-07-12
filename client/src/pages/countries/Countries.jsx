@@ -70,15 +70,16 @@ export default function Countries() {
                 Back
               </button>
             ) : (
-              <button className="btn btn-dark" onClick={prev_Page} disabled={true}>
+              <button
+                className="btn btn-dark"
+                onClick={prev_Page}
+                disabled={true}
+              >
                 Back
               </button>
             )}
             {buttonEnd ? (
-              <button
-                className={`btn btn-dark`}
-                onClick={next_Page}
-              >
+              <button className={`btn btn-dark`} onClick={next_Page}>
                 Next
               </button>
             ) : (
