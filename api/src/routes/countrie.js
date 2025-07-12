@@ -17,29 +17,28 @@ router.get("/countries", async (req, res) => {
 
     let countries = await Country.findAll();
     if (countries.length === 0) {
-      countries = await axios.get(`https://restcountries.com/v2/all`);
-      //countries = await axios.get(`https://restcountries.com/v3.1/all`);
-      
-      console.log(countries.data.name);
-      
-      countries.data.map(async (c) => {
+      const response = await axios.get(
+        "https://restcountries.com/v3.1/all?fields=name,cca3,flags,continents,capital,subregion,area,population"
+      );
+
+      for (const c of response.data) {
         await Country.create({
-          id: c.alpha3Code,
-          name: c.name,
-          flag: c.flag,
-          continent: c.region,
-          capital: c.capital,
-          subregion: c.subregion,
+          id: c.cca3,
+          name: c.name.common, // ojo que name es objeto con common y official
+          flag: c.flags.png, // o c.flags.svg si preferís
+          continent: c.continents[0], // es array, tomamos el primero
+          capital: c.capital ? c.capital[0] : "No capital", // puede no tener capital
+          subregion: c.subregion || "No subregion",
           area: c.area,
           population: c.population,
         });
-      });
+      }
     }
 
     if (!name) {
       const countrie = await Country.findAll({
         order: [["name", req.query.order]],
-        include: { model: TouristActivity}
+        include: { model: TouristActivity },
       });
       res.json(countrie);
       //console.log(countrie);
@@ -98,6 +97,5 @@ router.get("/population", async (req, res) => {
     res.json("NOT FOUND");
   }
 });
-
 
 module.exports = router;
