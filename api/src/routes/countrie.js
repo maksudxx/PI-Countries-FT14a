@@ -13,47 +13,52 @@ const router = Router();
 router.get("/countries", async (req, res) => {
   try {
     const { name } = req.query;
-    const { activity } = req.query;
 
-    let countries = await Country.findAll();
-    if (countries.length === 0) {
+    // optimization: check if database is empty using count (much faster than findAll)
+    const count = await Country.count();
+    
+    if (count === 0) {
+      console.log("Database empty. Fetching from external API...");
       const response = await axios.get(
         "https://restcountries.com/v3.1/all?fields=name,cca3,flags,continents,capital,subregion,area,population"
       );
 
-      for (const c of response.data) {
-        await Country.create({
-          id: c.cca3,
-          name: c.name.common, // ojo que name es objeto con common y official
-          flag: c.flags.png, // o c.flags.svg si preferís
-          continent: c.continents[0], // es array, tomamos el primero
-          capital: c.capital ? c.capital[0] : "No capital", // puede no tener capital
-          subregion: c.subregion || "No subregion",
-          area: c.area,
-          population: c.population,
-        });
-      }
+      const countriesToCreate = response.data.map(c => ({
+        id: c.cca3,
+        name: c.name.common,
+        flag: c.flags.png,
+        continent: c.continents[0],
+        capital: c.capital ? c.capital[0] : "No capital",
+        subregion: c.subregion || "No subregion",
+        area: c.area,
+        population: c.population,
+      }));
+
+      // optimization: use bulkCreate for massive insertion (one single transaction)
+      await Country.bulkCreate(countriesToCreate);
+      console.log("Seeding complete.");
     }
 
     if (!name) {
-      const countrie = await Country.findAll({
-        order: [["name", req.query.order]],
+      const order = req.query.order || "ASC";
+      const countries = await Country.findAll({
+        order: [["name", order]],
         include: { model: TouristActivity },
       });
-      res.json(countrie);
-      //console.log(countrie);
+      return res.json(countries);
     } else {
-      const matchCountrie = await Country.findAll({
+      const matchCountries = await Country.findAll({
         where: { name: { [Op.iLike]: `%${name}%` } },
+        include: { model: TouristActivity } // optimization: include activities in search too
       });
-      if (matchCountrie.length === 0) {
-        res.json({ message: "THE COUNTRY DOES NOT EXIST" });
-      } else {
-        res.json(matchCountrie);
+      if (matchCountries.length === 0) {
+        return res.status(404).json({ message: "THE COUNTRY DOES NOT EXIST" });
       }
+      return res.json(matchCountries);
     }
   } catch (err) {
-    console.error(err.message);
+    console.error("Error in /countries route:", err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 

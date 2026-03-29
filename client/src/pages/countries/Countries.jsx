@@ -5,118 +5,94 @@ import Cards from "../../components/cards/Cards";
 import styles from "./Countries.module.css";
 import Filter from "../../components/filters/Filter";
 import Order from "../../components/order/Order";
+import Spinner from "../../components/spinner/Spinner";
 
 export default function Countries() {
   const countries = useSelector((state) => state.countries);
+  const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState("asc");
+  const order = ""
+
+  const countriesPerPage = 12;
 
   const next_Page = () => {
-    if (countries.length <= page + 10) {
-      setPage(page);
-    } else {
-      setPage(page + 10);
+    if (page + countriesPerPage < countries.length) {
+      setPage(page + countriesPerPage);
     }
   };
+
   const prev_Page = () => {
-    if (page < 9) {
-      setPage(0);
-    } else {
-      setPage(page - 10);
+    if (page > 0) {
+      setPage(page - countriesPerPage);
     }
-  };
-  const first_Page = () => {
-    setPage(0);
   };
 
   useEffect(() => {
-    first_Page();
+    setPage(0);
   }, [countries]);
 
   useEffect(() => {
-    setOrder();
     dispatch(getCountries(order));
   }, [dispatch, order]);
-  var button = false;
-
-  if (countries.length >= 10) {
-    button = true;
-  }
-
-  let buttonInit = true;
-  let buttonEnd = true;
-
-  if (page === 0) {
-    buttonInit = false;
-  }
-
-  if (page === 240) {
-    buttonEnd = false;
-  }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.filtrado}>
-        <Filter />
-        <Order />
-      </div>
-      <div align="center">
-        <br />
-        {button ? (
-          <div className={styles.pagination}>
-            {buttonInit ? (
-              <button className="btn btn-dark" onClick={prev_Page}>
-                Back
-              </button>
-            ) : (
-              <button
-                className="btn btn-dark"
-                onClick={prev_Page}
-                disabled={true}
+    <main className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.controls}>
+          <Filter />
+          <Order />
+        </div>
+      </header>
+
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <section className={styles.mainContent}>
+          {countries.length > 0 && (
+            <div className={styles.pagination}>
+              <button 
+                className={styles.pageBtn} 
+                onClick={prev_Page} 
+                disabled={page === 0}
               >
-                Back
+                Previous
               </button>
-            )}
-            {buttonEnd ? (
-              <button className={`btn btn-dark`} onClick={next_Page}>
-                Next
-              </button>
-            ) : (
-              <button
-                className="btn btn-dark"
-                onClick={next_Page}
-                disabled={true}
+              <span className={styles.pageIndicator}>
+                Page {Math.floor(page / countriesPerPage) + 1} of {Math.ceil(countries.length / countriesPerPage)}
+              </span>
+              <button 
+                className={styles.pageBtn} 
+                onClick={next_Page} 
+                disabled={page + countriesPerPage >= countries.length}
               >
                 Next
               </button>
-            )}
-          </div>
-        ) : (
-          <div></div>
-        )}
-        <br />
-        <ul className={styles.countriesGrid}>
-          {countries?.length > 0 ? (
-            countries
-              ?.slice(page, page + 12)
-              .map((country, index) => (
-                <Cards
-                  key={index}
-                  flag={country.flag}
-                  name={country.name}
-                  continent={country.continent}
-                  population={country.population}
-                  id={country.id}
-                />
-              ))
-          ) : (
-            <div align="center" width={1600}>
-              <h1>Error 404 country not found</h1>
             </div>
           )}
-        </ul>
-      </div>
-    </div>
+
+          <div className={styles.gridContainer}>
+            {countries.length > 0 ? (
+              countries
+                .slice(page, page + countriesPerPage)
+                .map((country) => (
+                  <Cards
+                    key={country.id}
+                    flag={country.flag}
+                    name={country.name}
+                    continent={country.continent}
+                    id={country.id}
+                  />
+                ))
+            ) : (
+              <div className={styles.noResults}>
+                <h2>No countries found</h2>
+                <p>Try adjusting your filters or search terms.</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+    </main>
   );
 }

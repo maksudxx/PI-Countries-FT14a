@@ -1,34 +1,120 @@
-.countriesGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 200px);
-  gap: 40px;
-  justify-content: center;
-  width: 400%;
-  margin-top: 30px;
-}
-
-
-
-.button:hover {
-  color: black;
-  background-color: gray;
-  cursor: pointer;
-}
-
 .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+.header {
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.controls {
   display: flex;
-  min-height: 100vh; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .pagination {
-  width: 400%;
-  margin-top: 20px;
   display: flex;
-  justify-content: space-evenly
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  align-self: center;
 }
 
-.filtrado{
-  display: block;
-  border-right: 1px solid;
+.pageBtn {
+  padding: 0.6rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
 }
 
+.pageBtn:hover:not(:disabled) {
+  background-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.pageBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.pageIndicator {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.noResults h2 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.noResults p {
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination {
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .pageBtn {
+    padding: 0.5rem 1rem;
+    flex: 1;
+  }
+
+  .gridContainer {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+}

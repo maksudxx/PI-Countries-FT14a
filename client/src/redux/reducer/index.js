@@ -1,4 +1,4 @@
-import { FILTER_COUNTRIES_ACTIVITIES, GET_COUNTRIES } from "../actions/index";
+import { FILTER_COUNTRIES_ACTIVITIES, GET_COUNTRIES, SET_LOADING } from "../actions/index";
 import { GET_COUNTRIES_NAME } from "../actions/index";
 import { GET_COUNTRY_DETAIL } from "../actions/index";
 import { FILTER_COUNTRIES_CONTINENT } from "../actions/index";
@@ -8,9 +8,17 @@ const initialState = {
   countries: [],
   countryDetail: {},
   filterCountries: [],
+  isLoading: false,
 };
 
 export default function rootReducer(state = initialState, action) {
+  if (action.type === SET_LOADING) {
+    return {
+      ...state,
+      isLoading: action.payload,
+    };
+  }
+
   if (action.type === GET_COUNTRIES) {
     return {
       ...state,

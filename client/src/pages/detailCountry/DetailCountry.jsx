@@ -4,115 +4,80 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCountryDetail } from "../../redux/actions";
 import styles from "./DetailCountry.module.css";
-
-import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import Spinner from "../../components/spinner/Spinner";
 
 export default function DetailCountry() {
   const country = useSelector((state) => state.countryDetail);
+  const isLoading = useSelector((state) => state.isLoading);
   const dispatch = useDispatch();
-  const id = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getCountryDetail(id.id));
-  }, [dispatch, id.id]);
+    dispatch(getCountryDetail(id));
+  }, [dispatch, id]);
+
+  if (isLoading) return <Spinner />;
 
   return (
-  
     <div className={styles.container}>
-      <div >
-        <div className={styles.country}>
-          <div>
-            <h3>
-              {country.name} ({country.id})
-            </h3>
-            <img src={country.flag} alt="flag" width={250} />
+      <header className={styles.header}>
+        <Link to="/countries" className={styles.backBtn}>
+          ← Back to Countries
+        </Link>
+      </header>
+
+      <div className={styles.content}>
+        <section className={styles.mainInfo}>
+          <div className={styles.flagContainer}>
+            <img src={country.flag} alt={`${country.name} flag`} className={styles.flag} />
           </div>
-          <div>
-            <p>
-              <br />
-              <strong>CAPITAL:</strong> {country.capital}
-            </p>
-            <p>
-              <strong>SUB-REGION:</strong> {country.subregion}
-            </p>
-            <p>
-              <strong>AREA:</strong> {country.area}Km²
-            </p>
-            <p>
-              <strong>POPULATION:</strong> {country.population} habitants
-            </p>
+          <div className={styles.details}>
+            <h1 className={styles.name}>{country.name}</h1>
+            <span className={styles.idCode}>ID: {country.id}</span>
+            <div className={styles.stats}>
+              <div className={styles.statItem}>
+                <span className={styles.label}>Capital</span>
+                <span className={styles.value}>{country.capital}</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.label}>Sub-region</span>
+                <span className={styles.value}>{country.subregion}</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.label}>Area</span>
+                <span className={styles.value}>{country.area?.toLocaleString()} Km²</span>
+              </div>
+              <div className={styles.statItem}>
+                <span className={styles.label}>Population</span>
+                <span className={styles.value}>{country.population?.toLocaleString()} inhabitants</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <br /> <br />
-        <div>
-          <p>
-            <strong>TOURIST ACTIVITIES:</strong>
-          </p>
+        </section>
+
+        <section className={styles.activitiesSection}>
+          <h2 className={styles.sectionTitle}>Tourist Activities</h2>
           {country.touristActivities?.length > 0 ? (
-            <TableContainer component={Paper}>
-              <Table
-                sx={{ minWidth: 700 }}
-                size="small"
-                aria-label="a dense table"
-              >
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">
-                      <b>NAME</b>
-                    </TableCell>
-                    <TableCell align="center">
-                      <b>DIFFICULTY</b>
-                    </TableCell>
-                    <TableCell align="center">
-                      <b>DURATION</b>
-                    </TableCell>
-                    <TableCell align="center">
-                      <b>SEASON</b>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {country.touristActivities?.map((activitie, id) => (
-                    <TableRow
-                      key={id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell align="center">{activitie.name}</TableCell>
-                      <TableCell align="center">
-                        {activitie.difficulty}
-                      </TableCell>
-                      <TableCell align="center">{`${activitie.duration} hs`}</TableCell>
-                      <TableCell align="center">{activitie.season}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <div className={styles.activitiesGrid}>
+              {country.touristActivities.map((activity, idx) => (
+                <div key={idx} className={styles.activityCard}>
+                  <h3 className={styles.activityName}>{activity.name}</h3>
+                  <div className={styles.activityDetails}>
+                    <p><span>Difficulty:</span> {activity.difficulty}</p>
+                    <p><span>Duration:</span> {activity.duration} hs</p>
+                    <p><span>Season:</span> {activity.season}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
-            <div>
-              {" "}
-              <p>
-                {" "}
-                <strong>
-                  TOURIST ACTIVITIES NOT FOUND
-                  <Link to="/activity"> (CREATE A NEW ACTIVITY)</Link>{" "}
-                </strong>
-              </p>{" "}
+            <div className={styles.noActivities}>
+              <p>No tourist activities found for this country.</p>
+              <Link to="/activity" className={styles.createLink}>Create New Activity</Link>
             </div>
           )}
-        </div>
-        <Link to="/countries">
-        <div className={`btn btn-dark ${styles.button}`}>Back</div>
-      </Link>
+        </section>
       </div>
-      
     </div>
   );
 }
